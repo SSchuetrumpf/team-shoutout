@@ -1,0 +1,47 @@
+{
+  "output_file": "config.json",
+  "Command": {
+    "type": "textbox",
+    "value": "!so",
+    "label": "Command",
+    "tooltip": "The command that will be responded to.",
+    "group": "Configuration"
+  },
+  "Permission": {
+    "type": "dropdown",
+    "value": "moderator",
+    "items": [
+      "everyone",
+      "moderator",
+      "subscriber",
+      "editor"
+    ],
+    "label": "Permission",
+    "tooltip": "Who is able to use the command",
+    "group": "Permissions"
+  },
+  "Cooldown": {
+    "type": "slider",
+    "value": 1,
+    "min": 0,
+    "max": 5,
+    "ticks": 1,
+    "label": "Cooldown (seconds)",
+    "tooltip": "How long the command should go on cooldown for",
+    "group": "Permissions"
+  },
+  "DefaultMessage": {
+    "type": "textbox",
+    "value": "Check out $targetid! They were last seen playing $game",
+    "label": "Default Shout Message",
+    "tooltip": "The message that will be used when the target is not a member of a configured team",
+    "group": "Configuration"
+  },
+  "TeamConfig": {
+    "type": "textbox",
+    "value": "Services\\Scripts\\TeamShoutout\\teams.json",
+    "label": "Team Configuration",
+    "tooltip": "File path to team configuration",
+    "group": "Configuration"
+  }
+}
