@@ -1,7 +1,7 @@
 import json
 import codecs
 # noinspection PyUnresolvedReferences
-import Constants
+from .. import Constants
 
 
 class Teams(object):

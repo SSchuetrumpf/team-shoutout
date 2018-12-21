@@ -43,5 +43,12 @@
     "label": "Team Configuration",
     "tooltip": "File path to team configuration",
     "group": "Configuration"
+  },
+  "ClientId": {
+    "type": "textbox",
+    "value": "",
+    "label": "Twitch Client ID",
+    "tooltip": "Client ID used to connect to twitch to pull team information.",
+    "group": "Configuration"
   }
 }

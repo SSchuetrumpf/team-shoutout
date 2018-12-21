@@ -3,11 +3,6 @@ import calendar
 import time
 from functools import wraps
 
-HEADERS = {
-    "Authorization": 'Bearer $clientId',
-    "Client-Id": '$clientId'
-}
-
 EMPTY_RESULT = {
     "teams": []
 }
@@ -47,14 +42,15 @@ def ttl_cache(time_to_live_seconds):
 
 
 class Twitch(object):
-    def __init__(self, parent):
+    def __init__(self, settings, parent):
         self.parent = parent
+        self.settings = settings
 
     # 1 day
     @ttl_cache(time_to_live_seconds=60 * 60 * 24)
     def get_teams(self, username):
         self.parent.Log("API", "Fetching team info for {}".format(username))
-        response = json.loads(self.parent.GetRequest(API.get("teams").format(username), HEADERS)).get('response',
+        response = json.loads(self.parent.GetRequest(API.get("teams").format(username), self.get_headers())).get('response',
                                                                                                       json.dumps(
                                                                                                           EMPTY_RESULT))
         return json.loads(response)
@@ -63,4 +59,10 @@ class Twitch(object):
     @ttl_cache(time_to_live_seconds=60 * 60 * 3)
     def get_channel_info(self, username):
         self.parent.Log("API", "Fetching channel info for {}".format(username))
-        return json.loads(json.loads(self.parent.GetRequest(API.get("channelInfo").format(username), HEADERS)).get('response', json.dumps(EMPTY_RESULT)))
+        return json.loads(json.loads(self.parent.GetRequest(API.get("channelInfo").format(username), self.get_headers())).get('response', json.dumps(EMPTY_RESULT)))
+
+    def get_headers(self):
+        return {
+            "Authorization": 'Bearer {}'.format(self.settings.get('ClientId')),
+            "Client-Id": self.settings.get('ClientId')
+        }

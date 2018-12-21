@@ -15,7 +15,7 @@ Make a file anywhere on your computer. The file should be a json file and have t
 ]
 
 Team ID is the twitch ID of the team to use. The ID should be pulled from the Team's URL. So, for example,
-for Total Chaos, the link is "https://www.twitch.tv/team/totalchaos/", so the Team ID would be "totalchaos".
+if the link is "https://www.twitch.tv/team/team123/", so the Team ID would be "team123".
 This must match exactly.
 
 Parameters available
@@ -33,3 +33,9 @@ $followers: Number of followers this channel has
 If for some reason the channel does not exist, only $targetid and $displayName will be available.
 
 Check out $targetid! They were last seen playing $game. This is a default shoutout.
+
+Upgrade Instructions:
+    1. Back up config.json and config.js
+    2. Delete TeamShoutout script directory
+    3. Reimport TeamShoutout.zip
+    4. Replace config.json and config.js

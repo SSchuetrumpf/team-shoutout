@@ -5,17 +5,17 @@ import clr
 import sys
 import os
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "main"))
-sys.path.append(os.path.join(os.path.dirname(__file__), "main", "api"))
-sys.path.append(os.path.join(os.path.dirname(__file__), "main", "command"))
-sys.path.append(os.path.join(os.path.dirname(__file__), "main", "configuration"))
-sys.path.append(os.path.join(os.path.dirname(__file__), "main", "model"))
-sys.path.append(os.path.join(os.path.dirname(__file__), "main", "exception"))
+sys.path.append(os.path.dirname(__file__))
+# sys.path.append(os.path.join(os.path.dirname(__file__), "main", "api"))
+# sys.path.append(os.path.join(os.path.dirname(__file__), "main", "command"))
+# sys.path.append(os.path.join(os.path.dirname(__file__), "main", "configuration"))
+# sys.path.append(os.path.join(os.path.dirname(__file__), "main", "model"))
+# sys.path.append(os.path.join(os.path.dirname(__file__), "main", "exception"))
 
-import Constants
-from ShoutoutCommand import ShoutoutCommand
-from Settings import Settings
-from ExceptionHandler import ExceptionHandler
+from teamshoutout_lib import Constants
+from teamshoutout_lib.command.ShoutoutCommand import ShoutoutCommand
+from teamshoutout_lib.configuration.Settings import Settings
+from teamshoutout_lib.exception.ExceptionHandler import ExceptionHandler
 
 clr.AddReference("IronPython.SQLite.dll")
 clr.AddReference("IronPython.Modules.dll")

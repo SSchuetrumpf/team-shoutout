@@ -1,4 +1,4 @@
-from TwitchApi import Twitch
+from ..api.TwitchApi import Twitch
 
 PARAMETER_CONFIG = {
     "targetid": "display_name",
@@ -27,7 +27,7 @@ class ShoutoutCommand(object):
         self.parent = kwargs.get("parent")
         self.settings = kwargs.get("settings")
         self.teams = self.settings.teams
-        self.twitch = Twitch(self.parent)
+        self.twitch = Twitch(self.settings, self.parent)
 
     def handle_command(self, data):
         if self.should_execute_command(data):
@@ -46,7 +46,8 @@ class ShoutoutCommand(object):
         return data.IsChatMessage() \
            and data.GetParam(0).lower() == self.settings.get('Command') \
            and not self.parent.IsOnCooldown(self.settings.get('Command'), self.settings.get('Command')) \
-           and self.parent.HasPermission(data.User, self.settings.get('Permission'), '')
+           and self.parent.HasPermission(data.User, self.settings.get('Permission'), '') \
+           and data.IsFromTwitch()
 
     @staticmethod
     def parse_parameters(message, data, channel_info):

@@ -1,4 +1,4 @@
-import Constants
+from .. import Constants
 import json
 
 EXCEPTION_MESSAGE = "An exception occurred on {}'s channel. Type: {}, Message: {}, Data: {}"
@@ -10,12 +10,13 @@ class ExceptionHandler(object):
         self.author = Constants.Creator
 
     def handle_exception(self, exception, data=''):
-        self.parent.SendStreamWhisper(self.author,
-                                      EXCEPTION_MESSAGE.format(
-                                          self.parent.GetChannelName(),
-                                          type(exception).__name__,
-                                          str(exception),
-                                          json.dumps(self.dump_data(data))))
+        if self.should_report_exception(exception):
+            self.parent.SendStreamWhisper(self.author,
+                                          EXCEPTION_MESSAGE.format(
+                                              self.parent.GetChannelName(),
+                                              type(exception).__name__,
+                                              str(exception),
+                                              json.dumps(self.dump_data(data))))
 
     @staticmethod
     def dump_data(data):
@@ -33,5 +34,4 @@ class ExceptionHandler(object):
 
     @staticmethod
     def should_report_exception(exception):
-        # return exception is not OSError
-        return False
+        return exception is not OSError and exception is not IOError

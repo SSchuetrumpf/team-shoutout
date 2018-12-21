@@ -1,8 +1,8 @@
 import codecs
 import json
 
-from Teams import Teams
-import Constants
+from ..model.Teams import Teams
+from .. import Constants
 
 
 class Settings(object):
@@ -43,8 +43,7 @@ class Settings(object):
         try:
             with codecs.open(self.settingsFile, encoding="utf-8-sig", mode="w+") as f:
                 json.dump(self.settings, f, encoding="utf-8")
-            with codecs.open(self.settingsFile.replace("json", "js"), encoding="utf-8-sig", mode="w+") as f:
-                f.write("var settings = {0};".format(json.dumps(self.settings, encoding='utf-8')))
+            self.parent.Log(Constants.ScriptName, "WRITING")
         except IOError:
             self.parent.Log(Constants.ScriptName, "Failed to save settings to file.")
         return
