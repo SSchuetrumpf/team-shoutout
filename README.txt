@@ -39,3 +39,16 @@ Upgrade Instructions:
     2. Delete TeamShoutout script directory
     3. Reimport TeamShoutout.zip
     4. Replace config.json and config.js
+
+
+Obtaining a client Id:
+
+In order for this script to be able to automatically look up team information, you must generate a twitch app client id.
+
+1. Navigate to https://dev.twitch.tv/
+2. Log in
+3. Navigate to "Your Dashboard" if needed
+4. Go to "Apps" tab
+5. Click "Register your Application" and fill out the form
+6. Copy the string in the field labeled "Client ID"
+7. Enter into the "Client Id" section of Team Shoutout and click Save.
